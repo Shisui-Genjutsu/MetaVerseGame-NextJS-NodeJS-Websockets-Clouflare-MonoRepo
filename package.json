@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "metaverse-game",
   "private": true,
   "scripts": {
     "build": "turbo run build",
