@@ -1,0 +1,1 @@
+{"root":["./src/config.ts","./src/index.ts","./src/scrypt.ts","./src/routes/v1/admin.route.ts","./src/routes/v1/index.ts","./src/routes/v1/space.route.ts","./src/routes/v1/user.route.ts","./src/types/index.ts"],"version":"5.9.3"}
