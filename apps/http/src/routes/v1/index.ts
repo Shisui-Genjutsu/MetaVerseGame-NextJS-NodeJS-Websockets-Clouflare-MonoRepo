@@ -7,7 +7,7 @@ import { JWT_PASSWORD } from "../../config.js";
 
 export const router = Router();
 
-router.get("/sign-up", async (req, res) => {
+router.post("/sign-up", async (req, res) => {
     const parsedData = SignupSchema.safeParse(req.body);
     if (!parsedData.success) {
         res.status(400).json({ message: "Validation failed" })
@@ -26,11 +26,12 @@ router.get("/sign-up", async (req, res) => {
         })
         res.status(201).json({ message: "User created successfully" })
     } catch (error) {
+        console.error("sign-up failed", error);
         res.status(500).json({ message: "Internal server error" })
     }
 });
 
-router.get("/sign-in", async (req, res) => {
+router.post("/sign-in", async (req, res) => {
     const parsedData = SigninSchema.safeParse(req.body)
 
     if (!parsedData.success) {
@@ -64,7 +65,8 @@ router.get("/sign-in", async (req, res) => {
         }, JWT_PASSWORD)
 
         res.status(200).json({ token, message: "User signed in successfully" })
-    } catch {
+    } catch (error) {
+        console.error("sign-in failed", error);
         res.status(500).json({ message: "Internal server error" })
     }
 });

@@ -24,9 +24,17 @@ export const compare = async (password: string, hash: string): Promise<boolean> 
         }
 
         scrypt(password, salt, keyLength, (error, derivedKey) => {
-            if (error) reject(error);
+            if (error) {
+                reject(error);
+                return;
+            }
 
-            const hashKeyBuff = Buffer.from(hashKey)
+            const hashKeyBuff = Buffer.from(hashKey, "hex");
+
+            if (hashKeyBuff.length !== derivedKey.length) {
+                resolve(false);
+                return;
+            }
 
             resolve(timingSafeEqual(hashKeyBuff, derivedKey))
         })
